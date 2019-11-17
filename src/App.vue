@@ -1,11 +1,3 @@
-<template>
-  <div>
-    <button @click="increment" class="btn">
-      Count is: {{ state.count }}, double is: {{ double }}
-    </button>
-    <p>foo is: {{ foo }}, upper-cased: {{ FOO }}</p>
-  </div>
-</template>
 <script>
 import {
   computed,
@@ -16,10 +8,18 @@ import {
 } from "@vue/composition-api";
 
 export default createComponent({
+  /**
+   * Props
+   */
   props: {
     foo: String
   },
 
+  /**
+   * Setup method
+   * @param props {Object} the component's props
+   * @param context {Object} the current context
+   */
   setup(props) {
     /**
      * Initial State
@@ -68,6 +68,27 @@ export default createComponent({
       increment,
       state
     };
+  },
+
+  /**
+   * @method render
+   * @param createElement {Function}
+   * Supports both "createElement" and JSX templates
+   */
+  render() {
+    const { double, foo, FOO, increment, state } = this;
+
+    // JSX
+    return (
+      <div>
+        <button onClick={increment} className="btn">
+          Count is: {state.count}, double is: {double}
+        </button>
+        <p>
+          foo is: {foo}, upper-cased: {FOO}
+        </p>
+      </div>
+    );
   }
 });
 </script>
