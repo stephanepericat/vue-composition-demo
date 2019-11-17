@@ -16,9 +16,11 @@ export default createComponent({
   },
 
   /**
-   * Setup method
+   * @method setup
    * @param props {Object} the component's props
    * @param context {Object} the current context
+   * Set up your state, computed props, methods, watchers, lifecycle hooks...
+   * Whatever you export here will be available in render()
    */
   setup(props) {
     /**
