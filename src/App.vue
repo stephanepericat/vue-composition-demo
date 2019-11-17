@@ -1,12 +1,25 @@
 <template>
-  <button @click="increment" class="btn">
-    Count is: {{ state.count }}, double is: {{ double }}
-  </button>
+  <div>
+    <button @click="increment" class="btn">
+      Count is: {{ state.count }}, double is: {{ double }}
+    </button>
+    <p>foo is: {{ foo }}</p>
+  </div>
 </template>
 <script>
-import { reactive, computed, watch, onMounted } from "@vue/composition-api";
+import {
+  computed,
+  createComponent,
+  onMounted,
+  reactive,
+  watch
+} from "@vue/composition-api";
 
-export default {
+export default createComponent({
+  props: {
+    foo: String
+  },
+
   setup() {
     /**
      * Initial State
@@ -54,7 +67,7 @@ export default {
       state
     };
   }
-};
+});
 </script>
 
 <style lang="scss">
