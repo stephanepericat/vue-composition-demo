@@ -1,5 +1,5 @@
 <template>
-  <button @click="increment">
+  <button @click="increment" class="btn">
     Count is: {{ state.count }}, double is: {{ double }}
   </button>
 </template>
@@ -57,4 +57,17 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.btn {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  margin: 5px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #eee;
+
+  &:hover {
+    background: #ddd;
+  }
+}
+</style>
