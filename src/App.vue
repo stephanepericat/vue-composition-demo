@@ -4,7 +4,7 @@
   </button>
 </template>
 <script>
-import { reactive, computed, watch } from "@vue/composition-api";
+import { reactive, computed, watch, onMounted } from "@vue/composition-api";
 
 export default {
   setup() {
@@ -24,6 +24,10 @@ export default {
 
     watch(() => {
       console.log("DOUBLE >>>", double.value);
+    });
+
+    onMounted(() => {
+      console.log("COMPONENT MOUNTED >>>", state);
     });
 
     return {
