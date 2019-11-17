@@ -3,7 +3,7 @@
     <button @click="increment" class="btn">
       Count is: {{ state.count }}, double is: {{ double }}
     </button>
-    <p>foo is: {{ foo }}</p>
+    <p>foo is: {{ foo }}, upper-cased: {{ FOO }}</p>
   </div>
 </template>
 <script>
@@ -20,7 +20,7 @@ export default createComponent({
     foo: String
   },
 
-  setup() {
+  setup(props) {
     /**
      * Initial State
      */
@@ -32,6 +32,7 @@ export default createComponent({
      * Computed Properties
      */
     const double = computed(() => state.count * 2);
+    const FOO = computed(() => props.foo.toUpperCase());
 
     /**
      * Methods
@@ -63,6 +64,7 @@ export default createComponent({
      */
     return {
       double,
+      FOO,
       increment,
       state
     };
