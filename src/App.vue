@@ -48,11 +48,11 @@ export default createComponent({
      * Methods
      */
     function increment() {
-      set(state, 'count', state.count + 1);
+      set(state, "count", state.count + 1);
     }
 
     function updateUsername(e) {
-      set(state, 'username', e.target.value);
+      set(state, "username", e.target.value);
     }
 
     /**
