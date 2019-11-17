@@ -4,6 +4,8 @@ import {
   createComponent,
   onMounted,
   reactive,
+  ref,
+  set,
   watch
 } from "@vue/composition-api";
 
@@ -19,7 +21,7 @@ export default createComponent({
    * @method setup
    * @param props {Object} the component's props
    * @param context {Object} the current context
-   * Set up your state, computed props, methods, watchers, lifecycle hooks...
+   * Set up your state, refs, computed props, methods, watchers, lifecycle hooks...
    * Whatever you export here will be available in render()
    */
   setup(props) {
@@ -27,8 +29,14 @@ export default createComponent({
      * Initial State
      */
     const state = reactive({
-      count: 0
+      count: 0,
+      username: "John Doe"
     });
+
+    /**
+     * Refs
+     */
+    const nameRef = ref(null);
 
     /**
      * Computed Properties
@@ -40,18 +48,22 @@ export default createComponent({
      * Methods
      */
     function increment() {
-      state.count++;
+      set(state, 'count', state.count + 1);
+    }
+
+    function updateUsername(e) {
+      set(state, 'username', e.target.value);
     }
 
     /**
      * Watchers
      */
     watch(() => {
-      console.log("COUNT >>", state.count);
+      console.log(`COUNT >>> ${state.count}, DOUBLE >>> ${double.value}`);
     });
 
     watch(() => {
-      console.log("DOUBLE >>>", double.value);
+      console.log("USERNAME >>>", state.username);
     });
 
     /**
@@ -68,7 +80,9 @@ export default createComponent({
       double,
       FOO,
       increment,
-      state
+      nameRef,
+      state,
+      updateUsername
     };
   },
 
@@ -78,7 +92,7 @@ export default createComponent({
    * Supports both "createElement" and JSX templates
    */
   render() {
-    const { double, foo, FOO, increment, state } = this;
+    const { double, foo, FOO, increment, state, updateUsername } = this;
 
     // JSX
     return (
@@ -89,6 +103,13 @@ export default createComponent({
         <p>
           foo is: {foo}, upper-cased: {FOO}
         </p>
+        <input
+          type="text"
+          value={state.username}
+          onInput={updateUsername}
+          ref="nameRef"
+        />
+        {state.username && <p>Username: {state.username}</p>}
       </div>
     );
   }
