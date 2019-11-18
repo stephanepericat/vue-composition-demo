@@ -4,8 +4,9 @@ import {
   createComponent,
   onMounted,
   reactive,
-  ref,
+  // ref,
   set,
+  toRefs,
   watch
 } from "@vue/composition-api";
 
@@ -36,7 +37,7 @@ export default createComponent({
     /**
      * Refs
      */
-    const nameRef = ref(null);
+    // const nameRef = ref(null);
 
     /**
      * Computed Properties
@@ -80,9 +81,9 @@ export default createComponent({
       double,
       FOO,
       increment,
-      nameRef,
-      state,
-      updateUsername
+      updateUsername,
+      // You can use `toRefs` to make the state spreadable
+      ...toRefs(state)
     };
   },
 
@@ -92,24 +93,32 @@ export default createComponent({
    * Supports both "createElement" and JSX templates
    */
   render() {
-    const { double, foo, FOO, increment, state, updateUsername } = this;
+    const {
+      count,
+      double,
+      foo,
+      FOO,
+      increment,
+      updateUsername,
+      username
+    } = this;
 
     // JSX
     return (
       <div>
         <button onClick={increment} className="btn">
-          Count is: {state.count}, double is: {double}
+          Count is: {count}, double is: {double}
         </button>
         <p>
           foo is: {foo}, upper-cased: {FOO}
         </p>
         <input
           type="text"
-          value={state.username}
+          value={username}
           onInput={updateUsername}
-          ref="nameRef"
+          // ref="nameRef"
         />
-        {state.username && <p>Username: {state.username}</p>}
+        {username && <p>Username: {username}</p>}
       </div>
     );
   }
