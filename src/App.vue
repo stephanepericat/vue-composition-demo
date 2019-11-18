@@ -108,7 +108,7 @@ export default createComponent({
     // JSX
     return (
       <div>
-        <button onClick={increment} className="btn">
+        <button onClick={increment} class="btn">
           Count is: {count}, double is: {double}
         </button>
         <p>
@@ -116,6 +116,7 @@ export default createComponent({
         </p>
         <input
           type="text"
+          class="form-input"
           value={username}
           onInput={updateUsername}
           ref="nameInputRef"
@@ -128,6 +129,10 @@ export default createComponent({
 </script>
 
 <style lang="scss">
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
 .btn {
   border: 1px solid #ccc;
   padding: 5px 10px;
@@ -139,5 +144,13 @@ export default createComponent({
   &:hover {
     background: #ddd;
   }
+}
+
+.form-input {
+  border: 1px solid #ccc;
+  padding: 7px 15px;
+  margin: 10px 0;
+  border-radius: 5px;
+  width: 200px;
 }
 </style>
