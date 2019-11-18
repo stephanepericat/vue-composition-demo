@@ -4,7 +4,7 @@ import {
   createComponent,
   onMounted,
   reactive,
-  // ref,
+  ref,
   set,
   toRefs,
   watch
@@ -35,9 +35,9 @@ export default createComponent({
     });
 
     /**
-     * Refs
+     * Template Refs
      */
-    // const nameRef = ref(null);
+    const nameInputRef = ref(null);
 
     /**
      * Computed Properties
@@ -71,7 +71,8 @@ export default createComponent({
      * Lifecycle Hooks
      */
     onMounted(() => {
-      console.log("COMPONENT MOUNTED >>>", state);
+      console.log("COMPONENT MOUNTED..");
+      console.log("nameInputRef >>>", nameInputRef.value);
     });
 
     /**
@@ -81,6 +82,7 @@ export default createComponent({
       double,
       FOO,
       increment,
+      nameInputRef,
       updateUsername,
       // You can use `toRefs` to make the state spreadable
       ...toRefs(state)
@@ -116,7 +118,7 @@ export default createComponent({
           type="text"
           value={username}
           onInput={updateUsername}
-          // ref="nameRef"
+          ref="nameInputRef"
         />
         {username && <p>Username: {username}</p>}
       </div>
